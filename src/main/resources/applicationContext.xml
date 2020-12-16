@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   <!--   控制反转 IOC-->
+
+    <bean id="huawei" class="com.abc.ssm.spring.Phone">
+        <property name="brand" value="Huawei"/>
+        <property name="price" value="3999"/>
+    </bean>
+    <bean id="zhao" class="com.abc.ssm.spring.Person">
+        <property name="pid" value="1001"/>
+        <property name="pname" value="ZHAO**"/>
+        <!-- 依赖注入-->
+        <property name="phone" ref="huawei"/>
+    </bean>
+
+</beans>
