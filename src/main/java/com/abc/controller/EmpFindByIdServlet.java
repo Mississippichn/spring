@@ -1,8 +1,8 @@
 package com.abc.controller;
 
 import com.abc.common.Comm;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -20,7 +20,7 @@ public class EmpFindByIdServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int empno=Integer.parseInt(req.getParameter("empno"));
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp=empService.findById(empno);
         //反馈--java模板引擎
         if (emp !=null){
@@ -39,7 +39,7 @@ public class EmpFindByIdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int empno=Integer.parseInt(req.getParameter("empno"));
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp=empService.findById(empno);
         if (emp !=null){
             req.setAttribute("emp",emp);
